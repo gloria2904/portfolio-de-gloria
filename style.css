@@ -1,0 +1,248 @@
+/* ------------------------------ */
+/* Palette de couleurs futuriste  */
+/* ------------------------------ */
+:root {
+  --noir: #050509;
+  --noir-fonce: #020204;
+  --violet: #7a1fff;
+  --violet-neon: #b27bff;
+  --blanc: #ffffff;
+}
+
+/* ------------------------------ */
+/* Reset & Base                   */
+/* ------------------------------ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--noir);
+  color: var(--blanc);
+  overflow-x: hidden;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* ------------------------------ */
+/* Header & Navigation            */
+/* ------------------------------ */
+.header {
+  background: rgba(2, 2, 4, 0.8);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--violet);
+  letter-spacing: 2px;
+}
+
+/* --- Navigation Desktop --- */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--blanc);
+  font-weight: 500;
+  transition: 0.3s ease;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background: var(--violet);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* ------------------------------ */
+/* Burger Menu                   */
+/* ------------------------------ */
+.burger {
+  width: 35px;
+  height: 28px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.burger span {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background: var(--violet);
+  border-radius: 5px;
+  transition: 0.4s;
+}
+
+/* Animation croix */
+.burger.active span:nth-child(1) {
+  transform: translateY(12px) rotate(45deg);
+}
+
+.burger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.active span:nth-child(3) {
+  transform: translateY(-12px) rotate(-45deg);
+}
+
+/* --- Menu Mobile --- */
+.nav-links.mobile {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  height: 100vh;
+  width: 70%;
+  background: rgba(5, 5, 9, 0.98);
+  backdrop-filter: blur(6px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  transition: 0.4s ease;
+}
+
+.nav-links.mobile.active {
+  right: 0;
+}
+
+/* ------------------------------ */
+/* Hero Section futuriste         */
+/* ------------------------------ */
+.hero {
+  height: 90vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, var(--violet-fonce), var(--noir-fonce) 85%);
+  overflow: hidden;
+}
+
+/* Lignes animées */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0px, rgba(255, 255, 255, 0.05) 2px, transparent 2px, transparent 8px);
+  animation: scan 6s linear infinite;
+  opacity: 0.25;
+}
+
+/* Halo lumineux */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(122, 31, 255, 0.3), transparent 60%);
+  mix-blend-mode: screen;
+  animation: pulse 6s ease-in-out infinite;
+}
+
+.hero-content {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  animation: fadeIn 2s ease;
+}
+
+.hero-title {
+  font-size: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 700;
+  color: var(--blanc);
+}
+
+.hero-text {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+/* ------------------------------ */
+/* Boutons futuristes             */
+/* ------------------------------ */
+.btn {
+  background: linear-gradient(135deg, var(--violet), var(--violet-neon));
+  padding: 0.9rem 1.8rem;
+  color: var(--blanc);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.3s ease;
+  box-shadow: 0 0 12px rgba(31, 19, 49, 0.5);
+}
+
+.btn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 0 20px rgba(44, 26, 68, 0.8);
+}
+
+/* ------------------------------ */
+/* Animations                     */
+/* ------------------------------ */
+@keyframes scan {
+  from { transform: translateX(0); }
+  to { transform: translateX(-300px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.25); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ------------------------------ */
+/* Responsive                     */
+/* ------------------------------ */
+@media (max-width: 900px) {
+  .burger { display: flex; }
+  .nav-links { display: none; }
+  .nav-links.mobile { display: flex; }
+
+  .hero-title { font-size: 2.2rem; }
+}
+@media (max-width: 600px) {
+  .hero-title { font-size: 1.8rem; }
+  .hero-text { font-size: 1rem; }
+}

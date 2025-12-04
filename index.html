@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Accueil</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+</head>
+<body>
+  <header class="header">
+    <nav class="navbar container">
+      <h1 class="logo">GG</h1>
+
+      <!-- Burger Menu Button -->
+      <div class="burger" id="burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <!-- Navigation Links -->
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#presentation">Présentation</a></li>
+        <li><a href="projets.html">Projets</a></li>
+        <li><a href="cv.html">CV</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="hero" class="hero">
+    <div class="container hero-content">
+      <h2 class="hero-title">Bienvenue sur mon portfolio</h2>
+      <p class="hero-text">Je suis développeuse web en formation, passionnée par le design et le développement front-end & back-end.</p>
+    </div>
+  </section>
+
+  <section id="presentation" class="presentation container">
+    <h2>À propos de moi</h2>
+    <p class="presentation-text">
+      Je m'appelle Gloria, et je suis actuellement en formation pour devenir développeuse web. J'ai une passion pour la création de sites web attrayants et fonctionnels, et j'aime relever les défis techniques tout en explorant les dernières tendances en matière de design web. Mon objectif est de combiner mes compétences en développement avec ma créativité pour offrir des expériences utilisateur exceptionnelles.
+    </p>
+    <div class="buttons">
+      <a href="projets.html" class="btn">Voir mes projets</a>
+      <a href="cv.html" class="btn">Mon CV</a>
+      <a href="contact.html" class="btn">Me contacter</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2025 - Mon Portfolio | Tous droits réservés</p>
+  </footer>
+
+  <script>
+    const burger = document.getElementById('burger');
+    const navLinks = document.getElementById('nav-links');
+
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
