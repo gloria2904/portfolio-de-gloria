@@ -2,64 +2,126 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio - Accueil</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="image/png" href="favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gloria | Portfolio</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="header">
-    <nav class="navbar container">
-      <h1 class="logo">GG</h1>
 
-      <!-- Burger Menu Button -->
-      <div class="burger" id="burger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">GLORIA</div>
+  <nav>
+    <ul>
+      <li><a href="#home" data-fr="Accueil" data-en="Home">Accueil</a></li>
+      <li><a href="#about" data-fr="À propos" data-en="About">À propos</a></li>
+      <li><a href="#skills" data-fr="Compétences" data-en="Skills">Compétences</a></li>
+      <li><a href="#projects" data-fr="Projets" data-en="Projects">Projets</a></li>
+      <li><a href="#contact" data-fr="Contact" data-en="Contact">Contact</a></li>
+    </ul>
+  </nav>
+  <button id="lang-btn">EN</button>
+</header>
 
-      <!-- Navigation Links -->
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#presentation">Présentation</a></li>
-        <li><a href="projets.html">Projets</a></li>
-        <li><a href="cv.html">CV</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+<!-- HERO SECTION -->
+<section id="home" class="hero">
+  <h1>
+    <span data-fr="Bienvenue sur mon Portfolio" data-en="Welcome to my Portfolio">Bienvenue sur mon Portfolio</span>
+  </h1>
+  <h2>
+    <span data-fr="Développeuse Web en formation" data-en="Web Developer in training">
+      Développeuse Web en formation
+    </span>
+  </h2>
+  <p data-fr="Je crée des projets modernes, efficaces et futuristes."
+     data-en="I create modern, efficient and futuristic projects.">
+     Je crée des projets modernes, efficaces et futuristes.
+  </p>
 
-  <section id="hero" class="hero">
-    <div class="container hero-content">
-      <h2 class="hero-title">Bienvenue sur mon portfolio</h2>
-      <p class="hero-text">Je suis développeuse web en formation, passionnée par le design et le développement front-end & back-end.</p>
+  <div class="hero-btns">
+    <a href="#projects" class="btn" data-fr="Mes projets" data-en="My projects">Mes projets</a>
+    <a href="#contact" class="btn-outline" data-fr="Me contacter" data-en="Contact me">Me contacter</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <h2 data-fr="À propos de moi" data-en="About me">À propos de moi</h2>
+  <p data-fr="Je suis étudiante en développement web. J’aime le code propre, le design futuriste et les systèmes organisés."
+     data-en="I'm a web development student. I love clean code, futuristic design and organized systems.">
+     Je suis étudiante en développement web. J’aime le code propre, le design futuriste et les systèmes organisés.
+  </p>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section dark">
+  <h2 data-fr="Mes compétences" data-en="My skills">Mes compétences</h2>
+
+  <div class="skills-container">
+    <div class="skill">
+      <span>HTML</span>
+      <div class="bar"><div class="progress html"></div></div>
     </div>
-  </section>
 
-  <section id="presentation" class="presentation container">
-    <h2>À propos de moi</h2>
-    <p class="presentation-text">
-      Je m'appelle Gloria, et je suis actuellement en formation pour devenir développeuse web. J'ai une passion pour la création de sites web attrayants et fonctionnels, et j'aime relever les défis techniques tout en explorant les dernières tendances en matière de design web. Mon objectif est de combiner mes compétences en développement avec ma créativité pour offrir des expériences utilisateur exceptionnelles.
-    </p>
-    <div class="buttons">
-      <a href="projets.html" class="btn">Voir mes projets</a>
-      <a href="cv.html" class="btn">Mon CV</a>
-      <a href="contact.html" class="btn">Me contacter</a>
+    <div class="skill">
+      <span>CSS</span>
+      <div class="bar"><div class="progress css"></div></div>
     </div>
-  </section>
 
-  <footer class="footer">
-    <p>&copy; 2025 - Mon Portfolio | Tous droits réservés</p>
-  </footer>
+    <div class="skill">
+      <span>PHP</span>
+      <div class="bar"><div class="progress php"></div></div>
+    </div>
 
-  <script>
-    const burger = document.getElementById('burger');
-    const navLinks = document.getElementById('nav-links');
+    <div class="skill">
+      <span>MySQL</span>
+      <div class="bar"><div class="progress sql"></div></div>
+    </div>
+  </div>
+</section>
 
-    burger.addEventListener('click', () => {
-      burger.classList.toggle('active');
-      navLinks.classList.toggle('active');
-    });
-  </script>
+<!-- PROJECTS -->
+<section id="projects" class="section">
+  <h2 data-fr="Mes projets" data-en="My projects">Mes projets</h2>
+
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <h3>Air Quality DB</h3>
+      <p>SQL / Modélisation de base de données</p>
+    </div>
+
+    <div class="project-card">
+      <h3>Eco Container</h3>
+      <p>Housing project 20m²</p>
+    </div>
+
+    <div class="project-card">
+      <h3>Lean Line</h3>
+      <p>Production line modeling</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section dark">
+  <h2 data-fr="Contact" data-en="Contact">Contact</h2>
+
+  <form>
+    <input type="text" placeholder="Name">
+    <input type="email" placeholder="Email">
+    <textarea placeholder="Message"></textarea>
+
+    <button type="submit" class="btn">Send</button>
+  </form>
+</section>
+
+<footer class="footer">
+  <p>© 2025 Gloria - Portfolio</p>
+</footer>
+
+<script src="assets/js/script.js"></script>
 </body>
 </html>
