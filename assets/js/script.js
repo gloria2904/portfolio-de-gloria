@@ -78,17 +78,14 @@ navLinks.forEach(link => {
 });
 
 // ============================================
-// ANIMATION DES BARRES DE COMPÉTENCES AU SCROLL
-// (Si tu veux réactiver les barres plus tard)
+// ANIMATION DES CARTES DE COMPÉTENCES AU SCROLL
 // ============================================
 
-// Observer pour détecter quand la section skills est visible
 const skillsSection = document.querySelector('#skills');
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      // Ajouter une classe pour déclencher l'animation
       const skillCards = document.querySelectorAll('.skill-card');
       skillCards.forEach((card, index) => {
         setTimeout(() => {
@@ -140,38 +137,172 @@ projectCards.forEach(card => {
 });
 
 // ============================================
-// FORMULAIRE DE CONTACT
+// FORMULAIRE DE CONTACT FONCTIONNEL
 // ============================================
 
 const contactForm = document.querySelector('form');
 
-contactForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  
-  // Récupérer les valeurs
-  const name = contactForm.querySelector('input[type="text"]').value;
-  const email = contactForm.querySelector('input[type="email"]').value;
-  const message = contactForm.querySelector('textarea').value;
-  
-  // Validation simple
-  if (name && email && message) {
-    // Message de confirmation
-    const confirmMsg = currentLang === 'fr' 
-      ? '✅ Message envoyé ! Je vous répondrai bientôt.' 
-      : '✅ Message sent! I will reply soon.';
+if (contactForm) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
     
-    alert(confirmMsg);
+    // Récupérer les valeurs du formulaire
+    const formData = {
+      name: contactForm.querySelector('input[type="text"]').value.trim(),
+      email: contactForm.querySelector('input[type="email"]').value.trim(),
+      message: contactForm.querySelector('textarea').value.trim()
+    };
     
-    // Réinitialiser le formulaire
-    contactForm.reset();
-  } else {
-    const errorMsg = currentLang === 'fr' 
-      ? '❌ Veuillez remplir tous les champs.' 
-      : '❌ Please fill in all fields.';
+    // Validation côté client
+    if (!formData.name || !formData.email || !formData.message) {
+      showNotification(
+        currentLang === 'fr' 
+          ? '❌ Veuillez remplir tous les champs.' 
+          : '❌ Please fill in all fields.',
+        'error'
+      );
+      return;
+    }
     
-    alert(errorMsg);
+    if (!isValidEmail(formData.email)) {
+      showNotification(
+        currentLang === 'fr'
+          ? '❌ Veuillez entrer un email valide'
+          : '❌ Please enter a valid email',
+        'error'
+      );
+      return;
+    }
+    
+    // Désactiver le bouton pendant l'envoi
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = currentLang === 'fr' ? 'Envoi...' : 'Sending...';
+    
+    try {
+      const response = await fetch('api/submit-contact.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        showNotification(
+          currentLang === 'fr' 
+            ? '✅ Message envoyé avec succès ! Je vous répondrai bientôt.' 
+            : '✅ Message sent successfully! I will reply soon.',
+          'success'
+        );
+        contactForm.reset();
+      } else {
+        showNotification(
+          result.message || (currentLang === 'fr' ? 'Erreur lors de l\'envoi' : 'Error sending message'),
+          'error'
+        );
+      }
+    } catch (error) {
+      console.error('Erreur:', error);
+      showNotification(
+        currentLang === 'fr' 
+          ? '❌ Erreur de connexion. Veuillez réessayer.' 
+          : '❌ Connection error. Please try again.',
+        'error'
+      );
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalBtnText;
+    }
+  });
+}
+
+// ============================================
+// FONCTIONS UTILITAIRES
+// ============================================
+
+// Validation email
+function isValidEmail(email) {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+}
+
+// Système de notifications
+function showNotification(message, type = 'info') {
+  // Supprimer les notifications existantes
+  const existingNotif = document.querySelector('.notification');
+  if (existingNotif) {
+    existingNotif.remove();
   }
-});
+  
+  // Créer la notification
+  const notification = document.createElement('div');
+  notification.className = `notification notification-${type}`;
+  notification.textContent = message;
+  
+  // Ajouter les styles
+  notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 16px 24px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 500;
+    z-index: 10000;
+    animation: slideIn 0.3s ease;
+    max-width: 400px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  `;
+  
+  // Couleurs selon le type
+  if (type === 'success') {
+    notification.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+  } else if (type === 'error') {
+    notification.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+  } else {
+    notification.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+  }
+  
+  // Ajouter au DOM
+  document.body.appendChild(notification);
+  
+  // Supprimer après 5 secondes
+  setTimeout(() => {
+    notification.style.animation = 'slideOut 0.3s ease';
+    setTimeout(() => notification.remove(), 300);
+  }, 5000);
+}
+
+// Ajouter les animations CSS pour les notifications
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes slideIn {
+    from {
+      transform: translateX(400px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(400px);
+      opacity: 0;
+    }
+  }
+`;
+document.head.appendChild(style);
 
 // ============================================
 // EFFET PARALLAXE SUBTLE SUR LE HERO
