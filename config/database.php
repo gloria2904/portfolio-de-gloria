@@ -1,9 +1,9 @@
 <?php
 // Configuration de la base de données
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'portfolio_gloria');  // ← Nom de votre base
-define('DB_USER', 'root');              // ← Votre utilisateur MySQL
-define('DB_PASS', '');                  // ← Votre mot de passe MySQL
+define('DB_NAME', 'portfolio_gloria');  //   nom de base de données
+define('DB_USER', 'root');              //   utilisateur MySQL
+define('DB_PASS', '');                  //   mot de passe MySQL
 
 // Fonction de connexion à la base de données
 function getConnection() {

@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $sqlStats = "SELECT 
     COUNT(*) as total,
     SUM(CASE WHEN is_read = 0 THEN 1 ELSE 0 END) as unread,
-    SUM(CASE WHEN is_read = 1 THEN 1 ELSE 0 END) as read
+    SUM(CASE WHEN is_read = 1 THEN 1 ELSE 0 END) as reading
 FROM contact_messages";
 $stats = $pdo->query($sqlStats)->fetch();
 
@@ -291,7 +291,7 @@ $messages = $pdo->query($sqlMessages)->fetchAll();
             </div>
             
             <div class="stat-card read">
-                <div class="stat-number"><?php echo $stats['read']; ?></div>
+                <div class="stat-number"><?php echo $stats['reading']; ?></div>
                 <div class="stat-label">Messages lus</div>
             </div>
         </div>

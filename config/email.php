@@ -8,15 +8,15 @@ define('SMTP_SECURE', 'tls');                  // Encryption: 'tls' ou 'ssl'
 define('SMTP_AUTH', true);                     // Activer l'authentification SMTP
 
 // Identifiants de connexion
-define('SMTP_USERNAME', 'votre.email@gmail.com');  // ← CHANGEZ ICI
-define('SMTP_PASSWORD', 'votre_mot_de_passe_app'); // ← CHANGEZ ICI
+define('SMTP_USERNAME', 'gwedgloria@gmail.com');  
+define('SMTP_PASSWORD', '1505@mimi'); 
 
 // Informations de l'expéditeur
-define('EMAIL_FROM', 'votre.email@gmail.com');     // ← CHANGEZ ICI
+define('EMAIL_FROM', 'gwedgloria@gmail.com');     
 define('EMAIL_FROM_NAME', 'Portfolio Gloria');
 
 // Email de destination (où vous recevez les messages)
-define('EMAIL_TO', 'gloria@example.com');          // ← CHANGEZ ICI
+define('EMAIL_TO', 'gwedgloria@gmail.com');          
 define('EMAIL_TO_NAME', 'Gloria');
 
 // Options
